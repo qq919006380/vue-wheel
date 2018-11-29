@@ -41,15 +41,26 @@
     <div id="app">
         <g-button>按钮</g-button>
         <g-button icon='settings'>按钮</g-button>
-        <g-button icon='settings' icon-position='right'>按钮</g-button>        
+        <g-button icon='settings' icon-position='right'>按钮</g-button>
+        <br><br>
+        <g-button icon='settings' :loading="loading1" icon-position='right'>按钮</g-button>
+        <br><br>
         <g-icon name='dowload'></g-icon>
-        <g-icon name="lodaing"></g-icon>
-        <g-button :lodaing="true">点击下载</g-button>
-        <g-button icon="lodaing">点击下载</g-button>
+        <g-icon name="loading"></g-icon>
+        <br><br>
+        <g-button :loading="loading1" @click="loading1=!loading1;">点击下载</g-button>
+        <g-button :loading="loading2" @click="loading2=!loading2;" icon-position='right'>点击下载</g-button>
+        <g-button :loading="loading3" @click="loading3=!loading3;">点击下载</g-button>
+        <br><br>
+        <g-button-group>
+            <g-button icon="left">上一页</g-button>
+            <g-button>更多</g-button>
+            <g-button icon="right" icon-position='right'>上一页</g-button>
+        </g-button-group>
     </div>
     <script src="./src/app.js"></script>
     <!-- icon-font -->
-    <script src="//at.alicdn.com/t/font_936844_7k6ix1m2fi.js"></script>
+    <script src="//at.alicdn.com/t/font_936844_ko2qds3xu8b.js"></script>
 </body>
 
 </html>
