@@ -17,7 +17,7 @@ export default {
 };
 </script>
 
-<style lang=scss>
+<style lang="scss">
     .g-button-group{
         display: inline-flex;
         vertical-align: bottom;
@@ -27,8 +27,12 @@ export default {
                 margin-left: -1px;
             }
             &:first-child{
-                border-top-left-radius: var(--border-radius);
-                border-bottom-left-radius: var(--border-radius)
+                border-top-left-radius: var(--border-raduis);
+                border-bottom-left-radius: var(--border-raduis)
+            }
+             &:last-child {
+                border-top-right-radius: var(--border-raduis);
+                border-bottom-right-radius: var(--border-raduis);
             }
             &:hover{
                 position: relative;

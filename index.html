@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
+    <style lang="scss">
         * {
             box-sizing: border-box;
             margin: 0px;
             padding: 0px
         }
 
-        :root {
+        html {
             --button-height: 32px;
             --font-size: 14px;
             --button-bg: white;
@@ -40,23 +40,16 @@
 <body>
     <div id="app">
         <g-button>按钮</g-button>
-        <g-button icon='settings'>按钮</g-button>
-        <g-button icon='settings' icon-position='right'>按钮</g-button>
-        <br><br>
-        <g-button icon='settings' :loading="loading1" icon-position='right'>按钮</g-button>
-        <br><br>
-        <g-icon name='dowload'></g-icon>
-        <g-icon name="loading"></g-icon>
-        <br><br>
-        <g-button :loading="loading1" @click="loading1=!loading1;">点击下载</g-button>
-        <g-button :loading="loading2" @click="loading2=!loading2;" icon-position='right'>点击下载</g-button>
-        <g-button :loading="loading3" @click="loading3=!loading3;">点击下载</g-button>
-        <br><br>
+        <g-button icon="settings" icon-position="right">按钮</g-button>
+        <g-button loading icon-position="right">按钮</g-button>
         <g-button-group>
-            <div><g-button icon="left">上一页</g-button></div>
+            <g-button icon="left">上一页</g-button>
             <g-button>更多</g-button>
-            <g-button icon="right" icon-position='right'>上一页</g-button>
+            <g-button icon="right" icon-position="right">下一页</g-button>
         </g-button-group>
+
+        
+        
     </div>
     <script src="./src/app.js"></script>
     <!-- icon-font -->
