@@ -7,6 +7,7 @@
 <script>
 import  "./svg";
 export default {
+    name:"g-icon",
     props:["icon-name"]
 }
 </script>
