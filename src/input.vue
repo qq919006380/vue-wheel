@@ -1,7 +1,9 @@
 <template>
     <div class="wrapper" :class="{error}">
         <input type="text" :value="value" :disabled="disabled" :readonly="readonly" 
-        @change="$emit('change')">
+        @input="$emit('change',$event)" :placeholder="placeholder"
+        >
+        
         <template v-if="error">
             <icon icon-name="error" class="icon-error"></icon>
             <span class="errorMessage">{{error}}</span>
@@ -26,6 +28,9 @@ export default {
             type:Boolean,
             default:false
         },
+        placeholder:{
+            type:String,
+        },
         error:{
             type:String
         }
@@ -47,7 +52,7 @@ export default {
         display: inline-flex;
         align-items: center;
         > :not(:last-child){
-            margin-right: .5em
+            margin-right: .5em;
         }
         > input {
             height:32px;
