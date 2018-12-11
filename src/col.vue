@@ -13,6 +13,12 @@ export default {
     },
     offset: {
       type: [Number, String]
+    },
+    phone:{
+      type:Object,
+      validator(value){
+        [1,2,3] [1,2] [1,3] [1,2,3] [1]
+      }
     }
   },
   data() {
