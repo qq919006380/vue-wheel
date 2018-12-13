@@ -29,11 +29,8 @@ new Vue({
         
     },
     methods:{
-        inputChange(e){
-            console.log(e)
-        },
-        showToast(m){
-            this.$toast('asd')
+        showToast(){
+            this.$toast('我是 message')
         }
     },
 })
