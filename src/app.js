@@ -40,7 +40,7 @@ new Vue({
                     }
                 },
                 enableHtml:true,
-                autoCloseDelay:1
+                autoCloseDelay:5
             })
         }
     },
