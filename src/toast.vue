@@ -1,6 +1,10 @@
 <template>
-  <div class="toast">
-    <slot></slot>
+  <div class="toast" ref="toast">
+    <div class='message'>
+<slot v-if="!enableHtml"></slot>
+    <div v-else v-html="$slots.default[0]"></div>
+    </div>
+    
     <div class="line" ref="line"></div>
     <span class="close" v-if="closeButton" @click="onClickClose">{{closeButton.text}}</span>
   </div>
@@ -23,28 +27,45 @@ export default {
       default() {
         return {
           text: "关闭",
-          callback: toast => {
-            taost.close();
-          }
+          callback: undefined
         };
       }
+    },
+    enableHtml: {
+      type: Boolean,
+      default: false
     }
   },
   mounted() {
-    if (this.autoClose) {
-      setTimeout(() => {
-        this.close();
-      }, this.autoCloseDelay * 1000);
-    }
+    this.updateStyles();
+    this.execAutoClose();
   },
   methods: {
+    updateStyles() {
+      if (this.autoClose) {
+        setTimeout(() => {
+          this.close();
+        }, this.autoCloseDelay * 1000);
+      }
+    },
+    execAutoClose() {
+      this.$nextTick(() => {
+        console.log(this.$refs.toast.getBoundingClientRect().height);
+        this.$refs.line.style.height =
+          this.$refs.toast.getBoundingClientRect().height + "px";
+      });
+    },
     close() {
       this.$el.remove();
       this.$destroy;
     },
     onClickClose() {
       this.close();
-      this.closeButton.callback();
+      if (this.closeButton && typeof this.closeButton.callback === "function")
+        this.closeButton.callback(this);
+    },
+    log() {
+      console.log("测试");
     }
   }
 };
