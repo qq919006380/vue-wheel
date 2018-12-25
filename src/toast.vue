@@ -1,12 +1,13 @@
 <template>
-  <div class="toast" ref="toast" :class="toastClasses">
-    <div class="message">
-      <slot v-if="!enableHtml"></slot>
-      <div v-else v-html="$slots.default[0]"></div>
+  <div class="wrapper" :class="toastClasses">
+    <div class="toast" ref="toast">
+        <div class="message">
+          <slot v-if="!enableHtml"></slot>
+          <div v-else v-html="$slots.default[0]"></div>
+        </div>
+        <div class="line" ref="line"></div>
+        <span class="close" v-if="closeButton" @click="onClickClose">{{closeButton.text}}</span>
     </div>
-
-    <div class="line" ref="line"></div>
-    <span class="close" v-if="closeButton" @click="onClickClose">{{closeButton.text}}</span>
   </div>
 </template>
 
@@ -35,11 +36,11 @@ export default {
       type: Boolean,
       default: false
     },
-    position:{
-      type:String,
-      default:"top",
-      validator(value){
-        return ['top','bottom','middle'].indexOf(value >= 0)
+    position: {
+      type: String,
+      default: "top",
+      validator(value) {
+        return ["top", "bottom", "middle"].indexOf(value >= 0);
       }
     }
   },
@@ -47,11 +48,11 @@ export default {
     this.updateStyles();
     this.execAutoClose();
   },
-  computed:{
-    toastClasses(){
+  computed: {
+    toastClasses() {
       return {
-        [`position-${this.position}`]:true
-      }
+        [`position-${this.position}`]: true
+      };
     }
   },
   methods: {
@@ -70,6 +71,7 @@ export default {
     },
     close() {
       this.$el.remove();
+      this.$emit("beforeClose");
       this.$destroy;
     },
     onClickClose() {
