@@ -1,5 +1,5 @@
 <template>
-  <div class="toast" ref="toast">
+  <div class="toast" ref="toast" :class="toastClasses">
     <div class="message">
       <slot v-if="!enableHtml"></slot>
       <div v-else v-html="$slots.default[0]"></div>
@@ -34,11 +34,25 @@ export default {
     enableHtml: {
       type: Boolean,
       default: false
+    },
+    position:{
+      type:String,
+      default:"top",
+      validator(value){
+        return ['top','bottom','middle'].indexOf(value >= 0)
+      }
     }
   },
   mounted() {
     this.updateStyles();
     this.execAutoClose();
+  },
+  computed:{
+    toastClasses(){
+      return {
+        [`position-${this.position}`]:true
+      }
+    }
   },
   methods: {
     updateStyles() {
@@ -50,7 +64,6 @@ export default {
     },
     execAutoClose() {
       this.$nextTick(() => {
-        console.log(this.$refs.toast.getBoundingClientRect().height);
         this.$refs.line.style.height =
           this.$refs.toast.getBoundingClientRect().height + "px";
       });

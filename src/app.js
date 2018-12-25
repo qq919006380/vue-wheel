@@ -40,8 +40,11 @@ new Vue({
                     }
                 },
                 enableHtml:true,
-                autoCloseDelay:5
+                autoCloseDelay:1,
+                autoClose:false,
+                position:"bottom"
             })
         }
     },
+    
 })
