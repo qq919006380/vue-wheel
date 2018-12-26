@@ -49,8 +49,7 @@ new Vue({
                     }
                 },
                 enableHtml:true,
-                autoCloseDelay:1,
-                autoClose:false,
+                autoClose:3,
                 position:position
             })
         }

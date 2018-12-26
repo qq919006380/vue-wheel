@@ -1,12 +1,12 @@
 <template>
   <div class="wrapper" :class="toastClasses">
     <div class="toast" ref="toast">
-        <div class="message">
-          <slot v-if="!enableHtml"></slot>
-          <div v-else v-html="$slots.default[0]"></div>
-        </div>
-        <div class="line" ref="line"></div>
-        <span class="close" v-if="closeButton" @click="onClickClose">{{closeButton.text}}</span>
+      <div class="message">
+        <slot v-if="!enableHtml"></slot>
+        <div v-else v-html="$slots.default[0]"></div>
+      </div>
+      <div class="line" ref="line"></div>
+      <span class="close" v-if="closeButton" @click="onClickClose">{{closeButton.text}}</span>
     </div>
   </div>
 </template>
@@ -16,13 +16,13 @@ export default {
   name: "GuluToast",
   props: {
     autoClose: {
-      type: Boolean,
-      default: true
+      type: [Boolean, Number],
+      default: 5,
+      validator(value) {
+        return value === false || typeof value === "number";
+      }
     },
-    autoCloseDelay: {
-      type: Number,
-      default: 5
-    },
+    
     closeButton: {
       type: Object,
       default() {
@@ -57,30 +57,27 @@ export default {
   },
   methods: {
     updateStyles() {
-      if (this.autoClose) {
-        setTimeout(() => {
-          this.close();
-        }, this.autoCloseDelay * 1000);
-      }
-    },
-    execAutoClose() {
       this.$nextTick(() => {
         this.$refs.line.style.height =
           this.$refs.toast.getBoundingClientRect().height + "px";
       });
     },
+    execAutoClose() {
+      if (this.autoClose) {
+        setTimeout(() => {
+          this.close();
+        }, this.autoClose * 1000);
+      }
+    },
     close() {
       this.$el.remove();
-      this.$emit("beforeClose");
+      this.$emit("close");
       this.$destroy;
     },
     onClickClose() {
       this.close();
       if (this.closeButton && typeof this.closeButton.callback === "function")
         this.closeButton.callback(this);
-    },
-    log() {
-      console.log("测试");
     }
   }
 };
