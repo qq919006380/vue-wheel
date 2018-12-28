@@ -20,20 +20,17 @@ Vue.component('g-inputp', Input)
 Vue.component('g-col', Col)
 Vue.component('g-row', Row)
 Vue.component('g-toast', Toast)
-Vue.component('g-tab', Tabs)
-Vue.component('g-tab-head', TabsHead)
-Vue.component('g-tab-body', TabsBody)
-Vue.component('g-tab-item', TabsItem)
-Vue.component('g-tab-pane', TabsPane)
+Vue.component('g-tabs', Tabs)
+Vue.component('g-tabs-head', TabsHead)
+Vue.component('g-tabs-body', TabsBody)
+Vue.component('g-tabs-item', TabsItem)
+Vue.component('g-tabs-pane', TabsPane)
 
 Vue.use(plugin)
 new Vue({
     el: '#app',
     data: {
-        loading1: false,
-        loading2: false,
-        loading3: false,
-        message: "hi"
+        selectedTab:"sports"
     },
     created() {
 

@@ -40,11 +40,45 @@
 </head>
 
 <body>
-        
+
     <div id="app">
         <button @click="showToast1">top</button>
         <button @click="showToast2">middle</button>
         <button @click="showToast3">bottom</button>
+        <hr>
+        <g-tabs :selected.sync='selectedTab'>
+            <g-tabs-head>
+                <template slot='actions'>
+                    <button>设置</button>
+                </template>
+                <g-tabs-item name='vue'>
+                   <g-icon name='settings'></g-icon> vue
+                </g-tabs-item>
+                <g-tabs-item name='angular' disabled>
+                    angular
+                </g-tabs-item>
+                <g-tabs-item name='react'>
+                    react
+                </g-tabs-item>
+                <g-tabs-item name='mvc'>
+                    mvc
+                </g-tabs-item>
+            </g-tabs-head>
+            <g0tabs-body>
+                <g-tabs-pane>
+                    vue的内容
+                </g-tabs-pane>
+                <g-tabs-pane>
+                    angular的内容
+                </g-tabs-pane>
+                <g-tabs-pane>
+                    react的内容
+                </g-tabs-pane>
+                <g-tabs-pane>
+                    mvc的内容
+                </g-tabs-pane>
+            </g0tabs-body>
+        </g-tabs>
     </div>
     <script src="./src/app.js"></script>
     <!-- icon-font -->
