@@ -23,18 +23,20 @@ export default {
     },
     data(){
         return{
-            eventBus:new Vue()
+            eventBus:new Vue(),
+            test:'asdas1d231asd23a1sd'
         }
     },
     provide(){
         return {
-            eventBus:this.eventBus
+            eventBus:this.eventBus,
+            test:this.test
         }
     },
     created(){
         console.log('this :', this);
         console.log('this.eventBus :', this.eventBus);
-        this.$emit('update:selected','xxx')
+        // this.$emit('update:selected','xxx')
     }
 }
 </script>
