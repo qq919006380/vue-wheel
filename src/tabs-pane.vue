@@ -6,32 +6,32 @@
 
 <script>
 export default {
-  name: "v-pane",
-  inject: ["eventBus"],
-  data() {
-    return {
-      active: false
-    };
-  },
-  props: {
-    name: {
-      type: String | Number,
-      required: true
-    }
-  },
-  computed: {
-    classes() {
+  name: 'GuluTabsPane',
+    inject: ['eventBus'],
+    data () {
       return {
-        active: this.active
-      };
+        active: false
+      }
+    },
+    props: {
+      name: {
+        type: String | Number,
+        required: true
+      }
+    },
+    computed: {
+      classes () {
+        return {
+          active: this.active
+        }
+      }
+    },
+    created () {
+      this.eventBus.$on('update:selected', (name) => {
+        this.active = name === this.name;
+      })
     }
-  },
-  created() {
-    this.eventBus.$on("update:selected", name => {
-      this.active = name === this.name;
-    });
   }
-};
 </script>
 
 <style lang="scss" scoped>

@@ -46,7 +46,7 @@
         <button @click="showToast2">middle</button>
         <button @click="showToast3">bottom</button>
         <hr>
-        <g-tabs :selected.sync='selectedTab'>
+        <g-tabs :selected="selected" >
             <g-tabs-head>
                 <template slot='actions'>
                     <button>设置</button>

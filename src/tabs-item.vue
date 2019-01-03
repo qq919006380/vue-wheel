@@ -1,29 +1,29 @@
 <template>
-  <div class="tabs-item" @click="xxx" :class="classes" :data-name="name">
+   <div class="tabs-item" @click="onClick" :class="classes" :data-name="name">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: "item",
-  inject: ["eventBus"],
-  data() {
-    return {
-      active: false
-    };
-  },
-  props: {
-    disabled: {
-      type: Boolean,
-      default: false
+    name: 'GuluTabsItem',
+    inject: ['eventBus'],
+    data () {
+      return {
+        active: false
+      }
     },
-    name: {
-      type: String | Number,
-      required: true
-    }
-  },
-  computed: {
+    props: {
+      disabled: {
+        type: Boolean,
+        default: false
+      },
+      name: {
+        type: String | Number,
+        required: true
+      }
+    },
+    computed: {
       classes () {
         return {
           active: this.active,
@@ -31,17 +31,21 @@ export default {
         }
       }
     },
-  created() {
-    this.eventBus.$on("update:selected", name => {
-      this.active = name === this.name;
-    });
-  },
-  methods: {
-    xxx() {
-      this.eventBus.$emit("update:selected", this.name);
+    created () {
+      if (this.eventBus) {
+        this.eventBus.$on('update:selected', (name) => {
+          this.active = name === this.name;
+        })
+      }
+    },
+    methods: {
+      onClick () {
+        if (this.disabled) { return }
+        this.eventBus && this.eventBus.$emit('update:selected', this.name, this)
+        this.$emit('click', this)
+      }
     }
   }
-};
 </script>
 
 <style lang="scss" scoped>
