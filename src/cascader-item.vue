@@ -1,30 +1,29 @@
 <template>
-  <div class="cascaderItem">
-    <div>{{sourceItem.name}}</div>
-    <div v-if="sourceItem.children">
-      <gulu-cascader-item
-        v-for="(item,index) in sourceItem.children"
-        :key="index"
-        :source-item="item"
-      ></gulu-cascader-item>
+  <div class="root">
+    {{aaa.name}}
+    <div v-if="aaa.children">
+      <asasdasdd :aaa="item" v-for="(item,index) in aaa.children" :key="index"></asasdasdd>
     </div>
+    <!-- {{aaa.name}} -->
+    <!-- <div>{{aaa.name}}</div> -->
   </div>
 </template>
 
 <script>
 export default {
-  name: "GuluCascaderItem",
+  name: "asasdasdd",
+  created() {
+    // console.log(this.aaa.name);
+  },
   props: {
-    sourceItem: {
-      type: Object
-    }
+    aaa: {}
   }
 };
 </script>
 
-<style scoped lang="scss">
-.cascaderItem {
-  border: 1px solid red;
-  margin: 10px;
+<style>
+.root {
+  border: solid pink 1px;
+  margin: 10px
 }
 </style>

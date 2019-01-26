@@ -1,31 +1,28 @@
 <template>
-  <div class="cascader">
-    <div class="trigger">
-      <slot></slot>
-    </div>
-    <div class="popover">
-      <div v-for="(item,i) in source" :key="i">
-        <cascader-item :source-item="item"></cascader-item>
-      </div>
+  <div class="root">
+    <slot></slot>
+    <div v-for="(item,index) in source" :key="index">
+      <cascaderItem :aaa="item"></cascaderItem>
     </div>
   </div>
 </template>
 
 <script>
-  import CascaderItem from './cascader-item'
-  export default {
-    name: 'GuluCascader',
-    components: {CascaderItem},
-    props: {
-      source: {
-        type: Array
-      }
+import cascaderItem from "./cascader-item";
+export default {
+  props: {
+    source: {
+      type: Array
     }
+  },
+  components: {
+    cascaderItem: cascaderItem
   }
+};
 </script>
 
-<style scoped lang="scss">
-  @import "var";
-  .cascader {
-  }
+<style scoped>
+.root {
+  /* border: solid 1px; */
+}
 </style>
