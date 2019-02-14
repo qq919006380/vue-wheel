@@ -1,10 +1,12 @@
 <template>
   <div>
     <div class="cascader">
-      <div class="trigger" @click="popoverVisible=!popoverVisible">s</div>
+      <div class="trigger" @click="popoverVisible=!popoverVisible">
+        <slot></slot>
+      </div>
     </div>
-    <div class="popover" v-if="popoverVisible">
-      <cascader-items :items="source"></cascader-items>
+    <div class="popover-wrapper" v-if="popoverVisible">
+      <cascader-items :items="source" class="popover" :height="popoverHeight"></cascader-items>
     </div>
   </div>
 </template>
@@ -18,6 +20,9 @@ export default {
   props: {
     source: {
       type: Array
+    },
+    popoverHeight: {
+      type: String
     }
   },
   data() {
@@ -32,7 +37,7 @@ export default {
 @import "var";
 .cascader {
   .trigger {
-    border: 1px solid red;
+    border: 1px solid black;
     height: 32px;
     width: 100px;
   }
@@ -43,6 +48,14 @@ export default {
     .label {
       white-space: nowrap;
     }
+  }
+  .popover-wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    display: flex;
+    @extend .box-shadow;
   }
 }
 </style> 

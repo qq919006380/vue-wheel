@@ -31,6 +31,8 @@ Vue.component("g-tabs-pane", TabsPane);
 Vue.use(plugin);
 new Vue({
   el: "#app",
+  components: { "icon":Icon },
+
   data: {
     selectedTab: "sports",
     selected: "angular",
