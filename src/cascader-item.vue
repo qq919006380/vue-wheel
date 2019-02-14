@@ -1,29 +1,54 @@
 <template>
-  <div class="root">
-    {{aaa.name}}
-    <div v-if="aaa.children">
-      <asasdasdd :aaa="item" v-for="(item,index) in aaa.children" :key="index"></asasdasdd>
+  <div class="cascaderItem">
+    <div class="left">
+      <div
+        class="label"
+        v-for="(item,index) in items"
+        @click="leftSelected=item"
+        :key="index"
+      >{{item.name}}</div>
     </div>
-    <!-- {{aaa.name}} -->
-    <!-- <div>{{aaa.name}}</div> -->
+    <div class="right" v-if="rightItems">
+      <gulu-cascader-items :items="rightItems"></gulu-cascader-items>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "asasdasdd",
-  created() {
-    // console.log(this.aaa.name);
-  },
+  name: "GuluCascaderItems",
   props: {
-    aaa: {}
+    items: {
+      type: Array
+    }
+  },
+  data() {
+    return {
+      leftSelected: null
+    };
+  },
+  computed: {
+    rightItems() {
+      if (this.leftSelected && this.leftSelected.children) {
+        return this.leftSelected.children;
+      } else {
+        return null;
+      }
+    }
   }
 };
 </script>
 
-<style>
-.root {
-  border: solid pink 1px;
-  margin: 10px
-}
+<style scoped lang="scss">
+.cascaderItem {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    .left {
+      border: 1px solid red;
+    }
+    .right {
+      margin-top: -1px;
+    }
+  }
 </style>
