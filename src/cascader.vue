@@ -2,7 +2,7 @@
   <div>
     <div class="cascader">
       <div class="trigger" @click="popoverVisible=!popoverVisible">
-        <slot></slot>
+        
       </div>
     </div>
     <div class="popover-wrapper" v-if="popoverVisible">
